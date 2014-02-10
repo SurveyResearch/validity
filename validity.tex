@@ -1,0 +1,1049 @@
+\documentclass[11pt,twoside]{article}
+\usepackage[toc,page,header]{appendix}
+\usepackage{pdfpages}
+\usepackage{csquotes}
+\usepackage{changepage}
+\usepackage{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont[Mapping=tex-text]{Times New Roman}
+\setsansfont[Mapping=tex-text]{Arial}
+\setmonofont{Courier}
+
+\usepackage{float}
+\usepackage{turnstile}
+\usepackage{bussproofs}
+
+\usepackage{geometry}
+\geometry{letterpaper}
+
+\newtheorem{theorem}{Theorem}
+%\newtheorem{cor}{Corollary}
+%\newtheorem{lem}{Lemma}
+%\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newtheorem{objection}{Objection}
+\newenvironment*{response}[1][]{\noindent
+\textbf{Response to Objection #1.}
+\begin{adjustwidth}{1em}{1em}
+}
+{\end{adjustwidth}
+\vspace{1ex}
+}
+
+
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+
+\usepackage{graphicx}
+\usepackage[leftcaption]{sidecap}
+\sidecaptionvpos{figure}{c}
+
+%\usepackage{amssymb}
+
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\usepackage[
+bibstyle=numeric,
+citestyle=authortitle-ibid,
+natbib=true,
+hyperref,bibencoding=utf8,backref=true,backend=biber]{biblatex}
+
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Deflating Validity},    % title
+    pdfauthor={G. A. Reynolds},     % author
+    pdfsubject={Validity},   % subject of the document
+    pdfcreator={G. A. Reynolds},   % creator of the document
+    pdfproducer={G. A. Reynolds}, % producer of the document
+    pdfkeywords={Validity} {Survey Research}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links
+    citecolor=blue,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+\usepackage{draftwatermark}
+
+
+\usepackage{fancyhdr}
+
+%% \setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\fancyhead{} % clear header flds
+\fancyhead[RO,LE]{Validity in \sr{}}
+\fancyfoot{} % clear footer flds
+\fancyfoot[RO,LE]{\thepage}
+%% \chead[]{}
+%% \rhead{Validity in \sr{}}[\thepage]
+
+\title{Deflating Validity \\
+\vspace{12pt}\large{or: The use and abuse of \enquote{validity} in \sr{}}}
+\author{G. A. Reynolds}
+\date{\today}
+\bibliography{%
+../bib/validity.bib,%
+../bib/logic.bib,%
+../bib/mind.bib,%
+../bib/philosophy.bib,%
+../bib/psychometrics.bib,%
+../bib/measurement.bib,%
+../bib/psychology.bib,%
+../bib/variables.bib,%
+../bib/val.bib,%
+../bib/psychomet.bib}
+
+%% Macros
+
+\newcommand{\SM}{Standard Model}
+\newcommand{\XSM}{Extended Standard Model}
+
+\newcommand{\SMeth}{Survey Methodology}
+
+\newcommand{\SR}{Survey Research}
+\newcommand{\sr}{survey research}
+\newcommand{\SRIV}{Survey Interview}
+\newcommand{\sriv}{survey interview}
+\newcommand{\SIV}{Survey Interviewing}
+\newcommand{\FI}{Field Interviewer}
+\newcommand{\Iver}{Interviewer}
+\newcommand{\R}{Respondent}
+\newcommand{\LPR}{Legal Permanent Resident}
+\newcommand{\ART}{Assimilated Response Technique}
+\newcommand{\GAM}{Grouped Answer Method}
+\newcommand{\IOM}{Instrument of Measurement}
+
+\includeonly{%
+%% pilots,cards
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+\nocite{*}
+
+\begin{abstract}
+In philosophy and logic, validity and truth are closely related.
+Truth is a property of sentences (propositions); validity is a
+property of inferences.  In recent decades, ``deflationary'' (or
+``minimalist'') accounts of truth have become increasingly popular
+among philosophers.  Broadly speaking, these accounts deny that truth
+is a substantial property, and instead treat the term ``truth'' as a
+kind of expressive device; it adds nothing significant to the
+expressions in which is appears, but it makes the language
+significantly more powerful.  It allows us to say things we
+otherwise could not say, or could only say in cumbersome ways.  For
+example, with a locution like ``... is true'', we can endorse claims
+by naming them (e.g. ``Fermat's last theorem is true''); without such
+a locution, we would have to explicitly repeat the theorem as a claim
+(e.g. ``There is no integer z greater than 2 such that ...'').  And
+some things we can say with ``... is true'' would be practically
+impossible to express without it, such as ``everything the policeman
+said is true'' (since it would not be possible to repeat everything he
+said) or ``the theorems of group theory are true'' (since there are (I
+assume) infinitely many such theorems).
+
+A third aspect: sentences contain referring components.  To the truth
+of a sentence corresponds the ``referentiality'' of its components.
+``Snow is white'' is true; it is true because ``Snow'' refers to the
+famous cold stuff, and ``white'' refers to the famous color.  We need
+(but generally speaking do not have) a technical term to refer to the
+property of such refering relations that corresponds to the property
+of truth of sentences.  It is a category mistake to say ```Snow' is
+true'', but we would like to say ```Snow' is $x$'' in order to bring
+attention to this truth-like referential condition.  In \SR{} (and
+social science in general), the term ``validity'' is often recruited
+to serve this need in measurement vocabulary.  The inadvisability of
+this becomes obvious when you move from measurement to description:
+``2.3 meters is a valid measurement of the length of x'' is a common
+way to talk, but ```Snow' is valid'' sounds decidedly off-key.
+
+This paper has two goals.  The theoretical goal is to do with validity
+what deflationists have done with truth.  The more practical goal is to
+examine the use and role of the concept (term) validity in \SR{}.
+
+The first part of the paper thus explores the plausibility of a
+deflationary or minimalist concept of validity.  Not just logical
+(inferential) validity, but validity as used by the social sciences,
+as a property of referential relations.
+
+The second part of the paper examines the notion of validity as used
+in \SR{}.  Suffice it to say that vocabulary of validity in the social
+sciences, especially psychology and education research, is very,
+\textit{very} confused.  Generally speaking, the term is used to
+refer, not to inferences and their properties, but to referential
+relations.  Classic definitions of validity in the social sciences
+usually say something like ``measures what it purports to measure'',
+which is to say, measurement expressions (e.g. ``2.3 meters'')
+\textit{refer} to entities (properties, relations) in the world.  But
+it is also used to refer to inferences and a variety of other
+concepts.
+
+
+
+The connection between the first and second parts is that the social
+sciences usually treat validity as a substantial property.  Theories
+of validity often take on a metaphysical hue; they attempt to say what
+validity \textit{is}, as if it were some kind of entity or substance
+-- validity stuff -- that referring terms ``have'', possibly in
+greater or lesser degrees.  On the deflationary view, this is a
+mistake that inevitably leads to unresolvable problems.
+
+\end{abstract}
+
+\tableofcontents
+\listoffigures
+
+\section{Deflationism}
+
+\begin{remark}
+  Deflationism seems to depend essentially on some form of
+  expressivism.  Or maybe they amount to the same thing?
+\end{remark}
+
+\subsection{Validity, Reliability, Error}
+\label{sub:Validity}
+
+\begin{remark}
+What is the point of worrying about validity?  Is it something in the
+world that we are trying to discover?  Then we're trying to find ``the
+right description of the world'' (Putnam).  Or is it a concept, so
+that validity talk is about conceptual analysis and definition?
+
+Or: we try to find the right description, and validity talk is part of
+how we decide that we have found it.
+
+\end{remark}
+
+\begin{remark}
+Why do psychometricians and the like worry so about validity?
+
+Hypothesis: when they say ``validity'', what they're really interested
+in is scientific legitimacy.  Effectively, to say that a test (etc.)
+is valid is to say that it is in fact scientific.  Thats the practical
+import of the concept of validity for them.
+
+Unpack this.  Expose the assumptions and implications.
+\end{remark}
+
+\begin{remark}
+  The problem with validity (quantifiability) is circularity.  If the
+  task is to show that some property is quantitative, we have to do
+  this without relying on quantitative vocabulary.  So for example, if
+  we want to show that temperature is quantitative, we cannot use the
+  concept of a unit of temperature to do so, because that presupposes
+  just the outcome we are supposed to demonstrate.  This is similar to
+  the problem we face in seeking to account for representational
+  vocabulary in non-representational terms.
+
+  quantifiability v. validity?  distinct problems, but the latter
+  depends on the former?
+\end{remark}
+
+key concepts:
+
+\begin{itemize}
+\item validity treated as a special kind of property - of what?
+\item constructs
+\item (latent) variables
+\item indicators
+\end{itemize}
+
+``validity'' as code for:
+
+\begin{itemize}
+\item legitimacy
+\item vindication
+\item credibility
+\item proof (good premises + valid inference)
+\end{itemize}
+
+\begin{remark}
+  On the idea that validity something (a property, etc.) that we look
+  for in scientific theories in order to distinguish good ones from
+  bad: see Putnam on fact/value distinction.  We use value judgments -
+  simplicity, parsimony, etc. - in every aspect of science (thought),
+  esp. in weeding out bad theories.  For there is no external or
+  objective criterion of acceptability for theories to which we can
+  appeal, nor is there any such citerion that does not involve value
+  judgments.
+\end{remark}
+
+\begin{remark}
+  So along with the fact/value distinction, and the analytic/synthetic
+  distinction, the internal/external distinction also collapses?  Or
+  do we just exclude the notion of external?  No; we need to retain
+  the idea of an external world that is independent of us and to which
+  some of our judgments are answerable.  We don't get to just make
+  stuff up and call it true (correct) for at least some of our claims.
+  There is no external absolute authority that can decide for us which
+  theories are true, or rather which we should endorse, but that does
+  not mean there is no external world that is authoritative for some
+  of our sayings.  But isn't that trying to have it both ways?  How
+  can our theories answer to the world if we cannot appeal to the
+  world or some other external authority to sort them out?  See
+  Brandom.
+
+Related issue: what counts as evidence?  How do we decide?  What are
+we doing when we decide that something counts as strong (weak)
+evidence in support of a theory?  What are the criteria of adequacy
+for an account of evidence?
+\end{remark}
+
+\subsection{RCT and Self-validation}
+
+See Cartwright on RCT as self-validating.  This seems to mean that
+RCTs are valid by construction.
+
+This nicely parallels industrial QA notions of guaranteeing quality by
+designing a production process that prevents defects.
+
+What's the logic here?  Is self-validation really possible?  How can a
+process validate itself - isn't the very idea inherently circular?  Or
+rather, don't we land in a regress?  After all, if the idea is to
+specify a process that yields validity, how do we know that that
+process is itself valid?
+
+\subsection{Deflation}
+
+How can we get out of this mess?  One way is to deflate the notion of
+validity, just deny that it is a substantive property.  When we claim
+that a result is valid etc. what we are really saying is that we
+endorse it, approve of it, etc.  It's an expressive device.  Compare
+the semantic deflationist's idea that calling something true amounts
+to endorsing or approving of it.
+
+So if we discard the notion of validity (since it does no real work),
+don't we find ourselves lacking something essential?  Well, we just
+need a vocabulary that allows us to say explicitly the sorts of things
+we find it useful to be able to express with respect to a study or qx
+technique.  For example: credibility, utility, legitimacy,
+vindication, justification, etc.
+
+\begin{remark}
+  The notion of validity seems to be connected to the problem of
+  deciding which theories we should endorse.  What are the criteria of
+  adequacy for any notion (or theory) of validity?  Or: what are the
+  requirements that should be met by any purported explanation of
+  validity?  Both particular cases and the general idea.  Tarski gives
+  us something like this for logical validity; what about ``validity''
+  as the term is used by psychometricians, test theorists, etc.?
+
+Contrast: claims of validity for a case, v. explanation of what
+validity is.
+
+
+\end{remark}
+
+The objection will no doubt be that we need some kind of standard,
+which is just to say that we want to measure this something (validity,
+credibility, whatever).  Implicit in all this is the notion that there
+is some ``objective'' fact of the matter to which our
+study/technique/etc. is ansswerable. A study is valid iff - what?  If
+it meets some definite ``objective'' criteria.  Methodological
+criteria, conditions of validity, etc.  In the psychometrics and
+testing tradition this appeal to external authority is expressed as
+something along the lines of ``measures what it purports to measure''.
+Which is only meaningful insofar as a) there is actually something
+there to measure, and b) it is in fact susceptibel to measurement.
+
+And usually this is expressed in statistical terms.  But that dog
+won't hunt either - you cannot get to validity via statistics.  All
+you can do is measure central tendencies and variance - not enough to
+establish validity, which is a substantive notion. (analysis
+elsewhere).
+
+To say that sth is valid is just to say that it is admirable
+(Peirce?), or perhaps that it is virtuous, that it has the virtues we
+prize.
+
+%%%%%%%%%%%%%%%%
+\section{Previous Work}
+\label{sub:PreviousWork}
+
+\begin{remark}
+Fact/value; inference; 
+\end{remark}
+
+\subsection{Landmark articles}
+
+Cronback \& Meehl, Messick, Lissitz, Michell, etc.
+
+Special issues:
+
+Social Indicators Research Volume 45, Issue 1-3, November 1998:  Special Issue on Validity Theory and the Methods Used in Validation: Perspectives from the Social and Behavioral Sciences
+
+\noindent
+\cite{schwarz_is_2009}
+
+\subsection{Validity}
+
+\subsection{Measurement}
+
+\subsection{Assessment and Evaluation}
+
+\noindent
+\cite{brinkmann_factval_2005} \\
+\cite{cicourel_interviews_1982} \\
+\cite{hood_validity_2009} \\
+\cite{mcdonald_measuring_2011} \\
+\cite{messick_validity_1995} \\
+\cite{putnam_collapse_2002}
+
+%%%%%%%%%%%%%%%%
+\section{Kinds of Validity}
+\label{sub:ValidityKinds}
+
+Validity of what?  Question, answer, both, or something else.
+
+\begin{remark}
+  The critical idea is that representational validity
+  (\enquote{measures what it purports to measure}) is itself validate
+  by causality.  What matters is that the measurand (attribute to be
+  measured) should \textit{cause} change in the \IOM{}.
+
+  Example: thermometer.  The readings of a (good) thermometer are
+  \enquote{valid} measurements of temperature just because temperature
+  (or heat or?) \textit{causes} them.  NOT because the recording
+  measurements represent.  In other words, representation comes after
+  causality.
+
+  This seems to imply that validity is a property of the \IOM{}.
+  Which in turn argues that we should come up with a different term.
+  In any case, it is essential to distinguish between the causal
+  relationship between measurand and \IOM{} on the one hand, and the
+  behavior of the instrument and the measurement scale on the other,
+  and on the third hand, the reading of the measurement and its
+  recording as text in the proverbial lab notebook.
+\end{remark}
+
+Classic definitions: validity means it (test, etc.) measures what it
+purports to measure.  This is not a very clear definition; it fails to
+make the essential distinction between referentiality and accuracy,
+etc.  Do they mean to say that e.g. an inaccurate thermometer is
+valid, so long as it does measure temp?  What this means is so long as
+its (inaccurate) readings are caused by temperature?  (But if they are
+inaccurate there must be other causes at work.)
+
+A better definition: a valid measurement is one that is caused by (and
+only by) the measured property, regardless of accuracy.
+
+But the standard definition also may be read as implying that
+\enquote{measuring what it purports to measure} means that it measure
+the true value.  But since all meassurements contain error, what can
+this mean?  Seems \enquote{measure true value} must mean \enquote{is
+  cause by the measured property}.
+
+\begin{remark}
+  This characterization of measurement in terms of representation is
+  not to be confused with the Representational Theory of Measurement,
+  which is but one of several competeing theoretical models of
+  measurement.  A criterion of adequacy for any such theory is that it
+  must be able to account for the representational aspect of
+  measurement.
+\end{remark}
+
+The term is used in so many ways that it effectively means not much
+more than \enquote{good, valuable}.  In the literature one can find
+valid: questions, answers, data, etc. etc.  These are different
+things; what property common to them all does \enquote{validity} name?
+Is there such a common property?  If \enquote{good} is the best we can
+do, then the concept of validity is largely trivial if not vacuous.
+
+Need to distinguish between validity and accuracy.  An inaccurate
+thermometer may not measure temperature accurately, but it does
+measure (i.e. respond to) temperature.  So bad results are not
+necessarily invalid, only inaccurate.
+
+The classic concept is that validity is about what gets measured, or
+whether the measurement indeed measures what it purports to measure.
+Underlying this notion seems to be the idea that the measurement
+outcome (the number on a scale) stands in a particular relation to the
+measurand.  In other words, this is a representationalist notion:
+validity is about goodness of representation, where representation is
+viewed as a relation between signifier and signifiee.
+
+Notice that such a concept of validity can only apply to attributes
+that are in fact quantitatively structured (measurable).
+
+Thus ``question validity'' would describe the relation between the
+question and what it purports to measure.  But since questions do not
+measure anything, the real idea seems to be that question validity is
+about the (representing) relation between the question and what it
+purports to represent.
+
+Pragmatic alternative: good measurement useful, in that it allows us
+to make good predictions.
+
+Example: simple math test of one question: what is the sum of 1 and 1?
+Possible correct answers: 2; square root of 4; difference between the
+2nd and 3rd prime numbers; etc.  Not to mention: II (Roman numberals);
+deux (French), dos (Spanish), etc.
+
+Moral of the story:  q-a pairs do not measure.
+
+Re: use of tests as a matter of validity (i.e. many uses, each of
+which must be validated, so many validities, etc.).  Compare use of
+temperature.  The financial authorities could set monetory policy
+based on average temperature, if they wanted to.  That would be an
+invalid (bad, incorrect, unjustifiable) use of temperature
+measurement, but the use of temperature measurements has nothing
+whatsoever to do with the \enquote{validity} temperature measurement.
+
+The fact that different uses of social measurement do have something
+to do with validity should be taken as a sign that such
+\enquote{measurements} are not measurements at all, at least not in
+the way temperature measurements are.
+
+Why?  Because temperature \textit{causes} change in the instrument of
+measurement.  What makes it valid is reference to temperature and only
+temperature, which happens because temperature causes the reading.
+Compare use of a barometer as a proxy for thermometer.  Why is this
+invalid?  Because changes in the reading may be caused by factors
+other than temperature, and changes in temperature do not
+\textit{necessarily} cause changes in the reading.  So barometric
+measurements do not refer to temperature -- \enquote{refer} meaning
+something like \enquote{be directly caused by}.  Directly, because
+temperature does (or at least can) cause a change in barometric
+pressure, thus causing a change in the reading of a barometer, but the
+causal link is indirect.  It causes a change in pressure, which causes
+a change in temperature.
+
+Compare this with any social measurement, e.g. how old are you, or
+what is 2+2 or the like.  There is no direct causality involved.
+
+That's in addition to the problem of whether putative latent variables
+are in fact measurables (have quantitative structure, etc.)  Even if
+we could find a convincing latent psychological variable and somehow
+demonstrate that it is quantitative, we would still have no warrant
+for treating questions and answers involving it as measurements.
+
+The task of \sr{} is to investigate normative commitments and
+entitlements, rather than causes and effects.  Deontic rather than
+natural necessity.  The means of doing so is controlled, explicit,
+deontic scorekeeping.
+
+References:
+
+\noindent
+\cite{messick_validity_1995}\\
+\cite{hood_validity_2009}
+
+\subsection{Success Conditions}
+
+\begin{remark}
+The ideal is that we should say that some instrument "works", that is, that it has worked in the past and will work in the future.
+
+"Validity" is used by the orthodoxy to convey this ideal notion - if a
+survey instrument or procedure is "valid" then we can use it in future
+research.
+
+Validity is variously described as a property of instruments, or of
+inferences involving "interpretation or use" of a test, etc. etc.
+
+A better approach is to talk of success conditions rather than
+validity.  In the case of the ART, we would like to claim that it
+works, but what does this mean?  It works IF it is properly used, and
+if various other things are done - e.g. if quex items preceding the
+ART item are "right", if the project as a whole is "correctly"
+presented to respondents, etc.
+
+In short, what we should claim is not "ART works" tout court, but that
+we have identified the conditions under which it is likely to work -
+the success conditions.  Compare the notion of truth conditions as
+giving the meaning of a proposition.  Instead of "Is P true?" we ask
+"What are the truth conditions of P?" - what conditions make it true.
+Similarly, instead of "Is the technique valid?" we ask "What are the
+success conditions of the technique?" - what conditions make it valid.
+\end{remark}
+
+\subsection{Representational Validity}
+
+\sr{} seems to derive its notions of validity from psychometrics, test theory, etc.
+
+``The problem of validity is that of whether a test really measures
+what it purports to measure.''  (Kelly quoted in Saint-Mont).
+
+This seems to be pretty clearly a representationalist idea.
+
+Note that it is also rather vague, since it does not address accuracy.
+If all that is require is that a test measure (i.e. refer to) what it
+purports to measure, then it is an all-or-nothing affair, just like
+logical validity of inference.  There would be no question of degrees
+of validity, and validity itself would not be measurable on a scale.
+
+\subsection{Epistemic Validity}
+
+I.e. truth-value of propositions.
+
+\subsection{Logical Validity}
+
+The logical concept of validity is relatively straightforward: it is a
+property of inferences only.
+
+\begin{remark}
+  NB: distinction between rules of inference (schemata,
+  generalizations), and particular inferences.  To keep this clear, we
+  might use \enquote{formal inference} for the former and
+  \enquote{vernacular inference} for the latter?
+\end{remark}
+
+\noindent
+\cite{prawitz_inference_2009} \\
+\cite{prawitz_epistemic_2011}
+
+%%%%%%%%%%%%%%%%
+\subsection{Material Validity}
+
+A concept of \textit{material inference} was introduced by Wilfrid Sellars in x.
+
+\subsection{Statistical Validity}
+
+Statistical concepts of validity are pervasive in the \sr{} literature.\ldots
+
+\subsection{Discursive Validity}
+
+\enquote{Validation} of a question = exploration of proprieties of
+discursive practices governing use of the question.
+
+This is a substantially different approach from the orthodox approach.
+Usually validation is taken to involve question semantics.  The
+meaning of the question is often antecedently assumed, often based on
+some variety of Gricean intentionality; the literature often discusses
+this in terms of the respondents understanding of the
+\enquote{intended meaning of the question.}
+
+Pragmatic \enquote{validation} seeks instead to discover the
+discursive \textit{norms} governing the performance of the question.
+Since the question is construed in practical terms, as a discursive
+turn, its meaning cannot be antecedently presumed.  The task is not to
+determine whether the respondent understands the intended sense of the
+question, but to discover the norms implicit in the way respondents
+treat the question.  Questions establish conditions of correct
+response; but those conditions may differ for every person, since they
+depend on collateral commitments and entitlements.  The goal is to
+explore this; only after we have gotten a grip on how respondents
+treat a question can we move on to the question of how this
+corresponds to the researcher's understanding (i.e. the intended
+sense).
+
+In other words, \enquote{intended meaning} does not establish a
+standard against which respondent performance is to be judged.  That
+would beg the question, which is just what the question means
+(i.e. how is it normatively used).
+
+\subsection{Example:  Age}
+
+Suppose we want to validate the question ``How old are you?''
+
+Most of us can respond appropriately to this question by citing a
+number representing age in years.  But the correctness of this
+response is a matter of discursive practice rather than
+representational accuracy.  It counts as knowledge not because the
+number cited represents age, but because we have been trained to
+respond to the question appropriately.  We do not examine the number,
+see that it represents our age, then therefore cite it; nor do we
+examine our age (a latent variable?) and see that it is represented by
+a number which we then cite.  We have been trained from an early age
+to cite a number in response to questions of this sort, and to
+increment that number by one on every birthday.  This is a matter or
+normative discursive practice.  If we do not respond to the question
+by stating our names or something else unrelated to age, that is
+because doing so would violate the discursive norm, not because hidden
+cognitive processes prevent us from doing so for purely semantic
+reasons.
+
+That is not to say that our adherence to such practical norms is a
+matter of mere response to a stimulus.  To borrow a bit of imagery
+favored by Brandom, a parrot can be trained to reliably respond to our
+age question by producing a number noise, say \enquote{three}.  But it
+will never age; in the absence of retraining, every year it will
+announce the same age.  That's because its response is non-conceptual.
+It does not \textit{understand} the noises it responds to nor those it
+produces.  It presumably has no grasp of the inferential articulation
+of the concepts of age, three, you, etc.  Furthermore it has no notion
+of correctness; it cannot decide that ``three'' is incorrect and
+therefore decline to respond.  And although one might concede that its
+reliable responsive disposition is a kind of discursive practice
+(since it involves turn-taking or sequencing), it does not qualify as
+\textit{linguistic} discursive practice.
+
+What's the significance of this example?  First, it elucidates the
+distinction between non-conceptual and conceptual (that is, rational)
+responsiveness in terms of grasp of inferential structure.
+
+\begin{remark}
+  But what we need is clarification of how our conceptual life is
+  grounded in normative practice; do parrot examples do this?
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%
+\section{Causality and Normativity}
+
+Norms make the correct answer \enquote{necessary} (i.e. obligatory),
+but not compulsory.
+
+So questions do not \textit{cause} responses.  They establish the
+criteria by which the answer may be judged as correct or not, but they
+do not causally \textit{compel} the correct response.
+
+Furthermore, neither questioning nor answering is purely
+individualistic.  They involve discursive practices that are
+essentially social.  So the \R{}'s answer to a question cannot be
+construed as something cut off from social relations, nor as
+referencing a purely private state, believe, disposition, etc.  Since
+meaning is socially constituted, statements always involve more than
+the personal; they essentially involve, for example, positioning,
+role, status, etc.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Measurement and Error}
+
+%%%%%%%%%%%%%%%%
+\subsection{Measurement}
+
+\sr{} (at least as far as interviewing methodology is concerned) seems
+to depend almost entirely on notions of measurement drawn from
+psychology in general and \textit{psychometrics} in particular.  But
+quantitative psychology, and especially psychometrics, has its
+critics; one authority on measurement has gone so far as to claim that
+psychometrics is a form of \enquote{pathological} science, arguing
+that \enquote{[Q]uantitative psychology manifests methodological
+  thought disorder}\footcite{michell_quantitative_1997}, and that
+\enquote{[P]sychometricians are not only uncritical of an issue basic
+  to their discipline, but that, in addition, they have constructed a
+  conception of quantification that disguises
+  this.}\footcite[639]{michell_normal_2000} The gist of his argument:
+
+\blockquote[][]{Consider any attribute that psychometricians currently
+  believe they are able to measure (such as any of the veraious
+  intellectual abilities, personality traits or social attitutes that
+  the textbooks mention), and ask the question, \textit{Is that
+    attribute quantitative?}  The hypothesis that such an attribute is
+  quantitative underwrites the claim to be able to measure it.
+  However, \textit{there has never been any serious attempt within
+    psychometrics to test such
+    hypotheses.\footcite[648; \textit{emph. added}]{michell_normal_2000}}}
+
+
+\begin{remark}
+  TODO: concise description of our approach to measurement in the
+  context of this research.  Summary: the answers provided by \R{}s in
+  response to \Iver{} questions are not to be taken as proper
+  \textit{measurements} of anything.  Nor are the data that the
+  \Iver{} records and the analyst eventual manipulates to be
+  considered quantified representations of measurable (quantifiable)
+  properties.  Instead, answers are discursive turns or moves whose
+  \textit{contents} are implicit propositions endorsed by the \R{},
+  and the recorded data are representations of those endorsements.
+  Measurement only enters the picture when the statistician describes
+  the collection of recorded endorsed propositions.  In other words,
+  the statistical description of the collected data serves to
+  characterize what people assert (the propositions they endorse;
+  their speech practices) rather than \enquote{levels} of hidden
+  properties.
+\end{remark}
+
+\begin{objection}
+  How does this apply specifically to our question about status?  Is
+  it not correct to interpret a \R{}'s true correct answer to our
+  question as a \enquote{measurement} of status?  On the orthodox
+  view, the answer corresponds to the \R{}'s actual status; isn't this
+  properly considered measurement?
+\end{objection}
+\begin{response}[1]
+  A \R{} who truthfully claims e.g. \enquote{I am a \LPR{}} thereby
+  signals a \textit{commitment} to the propositional content of the
+  statement (namely, that R is a \LPR{}).  Any such commitment may be
+  challenged, in which case the \R{}'s \textit{entitlement} to the
+  claim comes to the fore.  The \R{} might \textit{justify} the claim
+  by citing any number of \textit{reasons}, including personal
+  knowledge, etc., or may exhibit non-linguistic evidence (such as an
+  official LPR card).
+
+  The critical point is that the \R{}'s answer is not \textit{caused}
+  by anything; in particular it is not caused by some occult
+  \enquote{variable}.  What matters to the meaningfulness of the
+  discursive exchange is not a matter of natural causes, but of
+  propositions, commitments, entitlements, authority, and the other
+  aspects of discursive practice involved in \enquote{the game of
+    giving and asking for reasons}.
+\end{response}
+
+
+\begin{objection}
+  If that is the case, if individual answers are not in fact
+  measurements of anything, then what becomes of the statistical
+  analysis of the collected data?  Is it not measurement?
+\end{objection}
+
+\begin{response}[2]
+  The collected data is just that, a set of data, so like any set it
+  can be described statistically.  The critical question is what is
+  the \textit{meaning} of that statistical description.  The orthodox
+  approach claims that it measures something -- a latent variable or
+  the like.  Implicitly at least, it claims that there is a
+  determinate relation between the statistical description and the
+  levels (or whatever) in the individual \R{}s.  The claim here is
+  that this claim is unwarranted.
+
+  The claim here is that the business of the \SIV{} is just deontic
+  scorekeeping.
+\end{response}
+
+\noindent References:
+
+\noindent
+\cite{michell_normal_2000}\\
+\cite{sherry_thermoscopes_2011}
+
+See British Journal of Psychology, Aug 1997 vol 88 issue 3:
+\cite{michell_quantitative_1997} and six commentaries.
+
+%%%%%%%%%%%%%%%%
+\subsection{Variables}
+
+References:
+
+\noindent
+\cite{toomela_variables_2008}\\
+\cite{schwarz_is_2009}\\
+\cite{stam_fault_2010}
+
+%%%%%%%%%%%%%%%%
+\subsection{Error}
+\enquote{Problems} in a \SRIV{} should not automatically be treated as
+indications of \textit{error}, whether \enquote{\R{} error},
+\enquote{\Iver{} error} or some other class of error.  Discrepancies
+between \R{} understanding and researcher understanding should often
+be treated as evidence of normal variance in how different members
+treat the question.  \enquote{Problems} in question-answer
+interactions may be traceable to mistakes, misunderstandings, etc.
+
+\subsection{The Metrological Corkscrew}
+
+The fundamental problem confronting any purported measurement is the
+metric equivalent of the hermeneutical circle.
+
+For a measure of an attribute to be \enquote{valid}, the attribute
+must be measureable in the first place.  The problem is that the only
+way to determine whether or not an attribute is quantifiably
+measurable is to measure it.  Measurability cannot be antecedently
+established.
+
+Sherry's account of the history of the development of temperature
+measurement\footcite{sherry_thermoscopes_2011} clearly illustrates the
+problem.  This problem also lies at the heart of Michell's attack on
+psychometrics\footcite{michell_normal_2000}.
+
+
+\subsection{The \enquote{Referential Gap}}
+
+By \textit{referential gap} I mean the conceptual chasm between the
+meaning of statistical description and the meanings of the individual
+data so described.
+
+Consider a canonical example of measurement: using a thermometer to
+measure temperature of a liquid.  An individual (specific occasion of)
+measurement yields a number on a scale that corresponds to the
+\enquote{true} temperature of the liquid.
+
+Such an account is not particularly controversial\footnote{For most of
+  us, anyway; the theory of measurement is quite subtle, and there are
+  several different approaches, some of which may not agree with the
+  emphasis I put on representation here.  Nonetheless, here we keep it
+  simple for the sake of clarity.  The point of this toy example is to
+  clarify the issues involved in order to show how measurement
+  concepts in \sr{} are problematic and to make an alternative
+  pragmatist concept intelligible.}, but there is much more than meets
+the eye here.  First, this account assumes but does not demonstrate
+that \enquote{true temperature} is meaningful; second, it takes
+\enquote{valid} (or, good, or correct, etc.)  measurement as
+essentially involving accuracy of representation or correspondence.
+
+Let's assume for the sake of argument that things really do have a
+true temperature, and that our thermometer accurately represents that
+temperature.  In this case, if we replicate our trial $n$ times and
+then describe the resulting dataset statistically, we will obtain a
+statistical description not only of the data but of the temperature
+measured.  That's because each datum in the statistical dataset has a
+determinate meaning, which can be expressed in terms of
+representation.
+
+\begin{remark}
+  This is of course an oversimplification; the notion of reference or
+  denotation with respect to measurement is not clear-cut.  The idea
+  here is that a particular measurment yields a number (on a scale)
+  that \textbf{refers} to temperature; but does it \textbf{denote}
+  \enquote{the} temperature?  Since perfect measurement is not
+  possible (all measurements \enquote{contain} error), it cannot be
+  the case that the measurement denotes the true temperature.  So
+  although the measurement (the number) in some sense refers to the
+  temperature of the sample, it does not denote the true temperature.
+  This sort of reference is fuzzy.
+\end{remark}
+
+Things are quite different for social scientific data, however.
+
+A specific question performance, by contrast, yields an answer, which
+is interpretable in terms of discursive norms rather than
+correspondence (accuracy of representation).
+
+\subsection{Person}
+
+\subsection{Reference}
+
+The person.  Orthodox view is that answers measure some property or
+attribute of the respondent.  One problem with this is that it assumes
+a individualist autonomy.  But discursive practice is essentially
+social, and the meanings of our sayings cannot be private.
+
+Subjectivity is social, relational; even first-person claims implicate
+essentially social stuff, spill over the boundaries of the individual
+speaker.
+
+\blockquote{Strongly constitutive sociocultural perspectives in
+  psychology have become more developed and influential in recent
+  decades, particularly during the past 15 years. These approaches
+  include constructionist, discursive, relational, dialogical, and
+  neo-Vygotskian theories. They diverge from one another in some
+  respects, but are alike in that they all consider psychological
+  processes, such as mind and self, to emerge out of social, cultural,
+  and historical contexts.\footcite{kirschner_sociocultural_2010}}
+
+\noindent
+\cite{bucholtz_identity_2005}\\
+\cite{kirschner_sociocultural_2010}\\
+\cite{andreouli_identity_2010}
+
+\section{Reliability}
+
+Intuitively, reliability is about replication.  Something is reliable
+if we can count on it to \enquote{work} the next time (or every time)
+we use it.  It's a kind of prediction.
+
+\begin{remark}
+Brandom: reliabilism as a key strategy of representationalism.
+Importance of the gerrymandering objection.
+\end{remark}
+
+\subsubsection{Statistical Reliability}
+
+\section{Assessment}
+
+The goal is usually stated as \enquote{comparable data}, but what we
+really want is \textit{commensurable} data; that is, data that can be
+meaningfully statistically analyzed.
+
+\subsection{Validation}
+
+Give a concept of validity, what must we do in order to validate our research?
+
+Standard \sr{} uses several \enquote{methods} of validation.  The best
+method involves checking responses against external data, usually
+administrative data.  Note that even here the assumption is that the
+external data is itself valid and reliable, which is not necessarily
+the case.  Administrative data, after all, is just as vulnerable to
+error as any other data, and so is the process of obtaining and using
+such data for verification purposes.  So even the best method of \sr{}
+validation is already fairly weak.
+
+Another common method involves some form of triangulation.  If the
+verification method corresponds to correspondence theories of truth,
+triangulation methods correspond to coherence theories.  The idea is
+simply that the data obtained in an interview should be internally
+consistent.  Contradictory responses are taken as indicators of
+invalidity.  And so forth.
+
+Regardless of what methods are used, we have no means of truly
+establishing validity and reliability.  The problem is that these
+concepts implicitly rely on theoretical presuppositions that do not
+hold for the human sciences, though they work just fine for the
+\enquote{hard} sciences.
+
+A \enquote{valid} question really just means we have \enquote{good} reasons to
+believe that we have provided (necessary) and sufficient
+\textit{resources} for the respondent to use in producing a correct
+and cooperative response.  That is, with the resources we have
+provided we have good reason to believe that \R{}s \textit{should}:
+
+\begin{itemize}
+\item grasp the intended significance of the question; and
+\item cooperatively disclose a correct response
+\end{itemize}
+
+This is really the best we can hope for.  Real \enquote{verification} of
+answers is not truly possible even for simple non-threatening
+questions; for the sort of question we are working with, there is no
+means of even approximating verification, since no external source of
+information is available.
+
+\subsection{Establishing Reliability}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quality Assurance: Failure, Defect, Cause}
+
+Instead of \enquote{error} and its sources we talk of failure and its
+causes.
+
+\subsection{Protocol}
+\subsection{Instrument}
+\subsection{Interviewer}
+\subsection{Respondent}
+\subsection{Environment}
+\subsection{Other Causes of Breakdown}
+
+\section{Validation}
+
+Here the critical question is how we can determine whether or not
+\R{}s answer the status question truthfully; that is, whether they
+pick the correct box.  The problem is that there is no way even in
+principle to verify answers based on externally obtained data.
+
+\subsection{Triangulation}
+
+A standard method of validating answers is by collectiing collateral
+information that can be used to check the internal consistency of
+answers.  For example, we might ask whether the \R{} is currently
+enrolled in school, and compare the response to the claimed
+immigration status group.
+
+There are two ways to obtain triangulation data: we can ask such
+questions either before or after we ask the immigration status
+question.
+
+The problem is that triangulation amounts to a form of disclosure
+analysis.  If we can use it to infer status, so can a hostile analyst.
+On the other hand, we might use it to determine whether the \R{} is
+responding truthfully, rather than to try to detect status.
+
+We do not want to use the response to the GAM question as a means of
+inferring status in conjunction with other items in the questionnaire.
+On the contrary, for ethical reasons the instrument must be designed
+so that such analysis is not possible.
+
+For extra protection we neither asked for nor collected any identifying information.
+
+\section{Quality}
+
+\section{Design}
+
+\clearpage
+\begin{appendices}
+\section{Validity in Logic}
+\section{Bibliography}
+%% \addcontentsline{toc}{chapter}{Bibliography}
+%% \bibliographystyle{plainnat}
+\printbibliography[heading=none]
+\end{appendices}
+
+
+\end{document}
